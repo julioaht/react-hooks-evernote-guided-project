@@ -1,11 +1,11 @@
 import React from "react";
 
-function NoteViewer() {
+function NoteViewer({ note, handleEditClick }) {
   return (
     <>
-      <h2>Title</h2>
-      <p>Body</p>
-      <button>Edit</button>
+      <h2>{note.title}</h2>
+      <p>{note.body}</p>
+      <button onClick={()=>handleEditClick()}>Edit</button>
     </>
   );
 }

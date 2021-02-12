@@ -71,32 +71,14 @@ function NoteContainer() {
     setShowEditForm(false)
   }
 
-  function handleSubmit(event){
-    event.preventDefault()
-
-  //   // i guess the URL is not correct. 
-  //   fetch(`http://localhost:3000/api/v1/notes/${id}`, {
-  //     method: "PATCH",
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //     },
-  //     body: JSON.stringify({
-  //       "title": event.target.title.value,
-  //       "body": event.target.body.value
-  //     }),
-  //   })
-  //   .then((r) => r.json())
-  //   .then
-  //   });
-  }
 
 
   return (
     <>
       <Search search={search} onSearchChange={handleSearchChange}/>
       <div className="container">
-        <Sidebar  notes={displayNotes} onDisplayNote={handleDisplayNote} onAddNote={handleAddNote} />
-        <Content note={noteContent} selected={selected} showEditForm={showEditForm} handleEditClick={handleEditClick} handleCancel={handleCancel} handleSubmit={handleSubmit}/>
+        <Sidebar  notes={displayNotes} onDisplayNote={handleDisplayNote} onAddNote={handleAddNote} handleCancel={handleCancel} showEditForm={showEditForm}/>
+        <Content note={noteContent} selected={selected} showEditForm={showEditForm} handleEditClick={handleEditClick} handleCancel={handleCancel}/>
       </div>
     </>
   );

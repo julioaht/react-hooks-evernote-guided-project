@@ -73,7 +73,9 @@ function NoteContainer() {
 
   function handleSubmit(event){
     event.preventDefault()
-    fetch(`http://localhost:3000/api/v1/notes/${selected.id}`, {
+
+    // i guess the URL is not correct. 
+    fetch(`http://localhost:3000/api/v1/notes/${notes.id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -84,18 +86,7 @@ function NoteContainer() {
       }),
     })
     .then((r) => r.json())
-    .then((updatedNote) => {
-      let updatedArray = notes.map(note =>{
-        if(updatedNote.id === note.id){
-          return updatedNote
-        }
-        else{
-          return note
-        }
-      })
-      setNotes(updatedArray)
-      setShowEditForm(false)
-      setSelected(updatedNote)
+    .then
     });
   }
 

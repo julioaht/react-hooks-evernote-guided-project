@@ -3,6 +3,7 @@ import Search from "./Search";
 import Sidebar from "./Sidebar";
 import Content from "./Content";
 
+// **************    useState
 
 function NoteContainer() {
   const [notes, setNotes] = useState([])
@@ -23,6 +24,8 @@ function NoteContainer() {
 
     }, [])
     
+
+
     function handleDisplayNote(selectedNote) {
       // console.log("display note content", selectedNote)
       setSelected(true)
@@ -68,13 +71,41 @@ function NoteContainer() {
     setShowEditForm(false)
   }
 
+  function handleSubmit(event){
+    event.preventDefault()
+    fetch(`http://localhost:3000/api/v1/notes/${selected.id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        "title": event.target.title.value,
+        "body": event.target.body.value
+      }),
+    })
+    .then((r) => r.json())
+    .then((updatedNote) => {
+      let updatedArray = notes.map(note =>{
+        if(updatedNote.id === note.id){
+          return updatedNote
+        }
+        else{
+          return note
+        }
+      })
+      setNotes(updatedArray)
+      setShowEditForm(false)
+      setSelected(updatedNote)
+    });
+  }
+
 
   return (
     <>
       <Search search={search} onSearchChange={handleSearchChange}/>
       <div className="container">
         <Sidebar  notes={displayNotes} onDisplayNote={handleDisplayNote} onAddNote={handleAddNote} />
-        <Content note={noteContent} selected={selected} showEditForm={showEditForm} handleEditClick={handleEditClick} handleCancel={handleCancel}/>
+        <Content note={noteContent} selected={selected} showEditForm={showEditForm} handleEditClick={handleEditClick} handleCancel={handleCancel} handleSubmit={handleSubmit}/>
       </div>
     </>
   );

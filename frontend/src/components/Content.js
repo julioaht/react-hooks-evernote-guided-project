@@ -13,7 +13,7 @@ import Instructions from "./Instructions";
 function Content({ note, selected, showEditForm, handleEditClick, handleCancel, handleSubmit }) {
   const getContent = () => {
     if (showEditForm) {
-      return <NoteEditor note={note} handleCancel={handleCancel} />;
+      return <NoteEditor note={note} handleCancel={handleCancel} handleSubmit={handleSubmit} />;
     } else if (selected) {
       return <NoteViewer note={note} handleEditClick={handleEditClick}/>;
     } else {

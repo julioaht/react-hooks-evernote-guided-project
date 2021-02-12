@@ -74,20 +74,20 @@ function NoteContainer() {
   function handleSubmit(event){
     event.preventDefault()
 
-    // i guess the URL is not correct. 
-    fetch(`http://localhost:3000/api/v1/notes/${notes.id}`, {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        "title": event.target.title.value,
-        "body": event.target.body.value
-      }),
-    })
-    .then((r) => r.json())
-    .then
-    });
+  //   // i guess the URL is not correct. 
+  //   fetch(`http://localhost:3000/api/v1/notes/${id}`, {
+  //     method: "PATCH",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //     body: JSON.stringify({
+  //       "title": event.target.title.value,
+  //       "body": event.target.body.value
+  //     }),
+  //   })
+  //   .then((r) => r.json())
+  //   .then
+  //   });
   }
 
 
